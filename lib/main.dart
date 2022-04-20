@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:shimmer_loading/loading_shimmer.dart';
 
-import 'loading_like_instagram.dart';
+import 'loading_custom_shimmer.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,7 +12,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Shimmer',
       routes: <String, WidgetBuilder>{
-        'loading_2': (_) => const LoadingLikeInstagram(),
+        'loadingExampleWithShimmer': (_) => const LoadingExampleWithShimmer(),
+        'loadingWithCustomShimmer': (_) => const LoadingWithCustomShimmer(),
         'loading': (_) => LoadingListPage(),
         'slide': (_) => SlideToUnlockPage(),
       },
@@ -38,8 +40,14 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: <Widget>[
           ListTile(
-            title: const Text('Loading Like instagram shimmer'),
-            onTap: () => Navigator.of(context).pushNamed('loading_2'),
+            title: const Text('Loading with custom shimmer'),
+            onTap: () =>
+                Navigator.of(context).pushNamed('loadingWithCustomShimmer'),
+          ),
+          ListTile(
+            title: const Text('Loading use library shimmer'),
+            onTap: () =>
+                Navigator.of(context).pushNamed('loadingExampleWithShimmer'),
           ),
           ListTile(
             title: const Text('Loading List'),
