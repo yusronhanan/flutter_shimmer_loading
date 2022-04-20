@@ -21,123 +21,104 @@ class _LoadingExampleWithShimmerState extends State<LoadingExampleWithShimmer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
+        body: SingleChildScrollView(
       child: Column(
         children: [
           Shimmer(
               gradient: ShimmerGradient.shimmerGradient,
-              child: CardSlider(
-                  textTitle: "Card Slider",
-                  itemList: const [
-                    'https://flutter'
-                        '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
-                    'https://flutter'
-                        '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
-                    'https://flutter'
-                        '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
-                    'https://flutter'
-                        '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
-                    'https://flutter'
-                        '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
-                    'https://flutter'
-                        '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
-                    'https://flutter'
-                        '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
-                    'https://flutter'
-                        '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg'
-                  ],
-                  onTapCallback: (key) => print(key))),
+              child: Column(
+                children: [
+                  _buildCardSlider(_isLoading),
+                  _buildTopRowItem(_isLoading),
+                  _buildListItem(_isLoading),
+                  _buildLastItem(_isLoading),
+                  _buildText(
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                      50,
+                      _isLoading),
+                  _buildText(
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                      50,
+                      !_isLoading),
+                ],
+              )),
         ],
       ),
     ));
   }
 
   Widget _buildCardSlider(bool isLoading) {
-    return ShimmerLoading(
-        isLoading: isLoading,
-        child: CardSlider(
-            textTitle: "Card Slider",
-            itemList: const [
-              'https://flutter'
-                  '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
-              'https://flutter'
-                  '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
-              'https://flutter'
-                  '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
-              'https://flutter'
-                  '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
-              'https://flutter'
-                  '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
-              'https://flutter'
-                  '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
-              'https://flutter'
-                  '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
-              'https://flutter'
-                  '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg'
-            ],
-            onTapCallback: (key) => print(key)));
+    return CardSlider(
+        textTitle: "Card Slider",
+        itemList: const [
+          'https://flutter'
+              '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
+          'https://flutter'
+              '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
+          'https://flutter'
+              '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
+          'https://flutter'
+              '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
+          'https://flutter'
+              '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
+          'https://flutter'
+              '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
+          'https://flutter'
+              '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
+          'https://flutter'
+              '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg'
+        ],
+        onTapCallback: (key) => print(key));
   }
 
   Widget _buildTopRowItem(bool isLoading) {
-    return ShimmerLoading(
-      isLoading: isLoading,
-      child: const CircleListItem(),
-    );
+    return const CircleListItem();
   }
 
   Widget _buildListItem(bool isLoading) {
-    return ShimmerLoading(
+    return CardListItem(
       isLoading: isLoading,
-      child: CardListItem(
-        isLoading: isLoading,
-      ),
     );
   }
 
   Widget _buildLastItem(bool isLoading) {
-    return ShimmerLoading(
-      isLoading: isLoading,
-      child: Container(
-        decoration: BoxDecoration(color: Colors.blue),
-        height: 50,
-        width: 70,
-      ),
+    return Container(
+      decoration: BoxDecoration(color: Colors.blue),
+      height: 50,
+      width: 70,
     );
   }
 
   Widget _buildText(String text, double fontSize, bool isLoading) {
-    return ShimmerLoading(
-      isLoading: isLoading,
-      child: isLoading
-          ? Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: fontSize / 2,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
+    return isLoading
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: double.infinity,
+                height: fontSize / 2,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(16),
                 ),
-                const SizedBox(height: 16),
-                Container(
-                  width: 250,
-                  height: fontSize / 2,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
+              ),
+              const SizedBox(height: 16),
+              Container(
+                width: 250,
+                height: fontSize / 2,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(16),
                 ),
-              ],
-            )
-          : Text(
-              text,
-              style: TextStyle(
-                  color: Colors.blue,
-                  fontSize: fontSize,
-                  fontWeight: FontWeight.bold),
-            ),
-    );
+              ),
+            ],
+          )
+        : Text(
+            text,
+            style: TextStyle(
+                color: Colors.blue,
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold),
+          );
   }
 }
