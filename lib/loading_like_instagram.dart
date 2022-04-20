@@ -5,7 +5,7 @@ import 'package:shimmer_loading/slider_example.dart';
 
 import 'card_list_item.dart';
 import 'circle_list_item.dart';
-import 'shimmer.dart';
+import 'shimmer_class.dart';
 
 class LoadingLikeInstagram extends StatefulWidget {
   const LoadingLikeInstagram({Key? key}) : super(key: key);

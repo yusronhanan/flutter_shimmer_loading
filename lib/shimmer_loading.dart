@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'shimmer.dart';
+import 'shimmer_class.dart';
 
 class ShimmerLoading extends StatefulWidget {
   const ShimmerLoading({
